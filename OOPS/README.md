@@ -59,7 +59,7 @@ The ability of code to behave differently for different contexts.
 **Compile-time:** Achieved through method overloading and operator overloading.  
 **Runtime:** Achieved through method overriding with virtual functions.
 
-![Polymorphism](https://github.com/ParitKansal/photos/blob/main/polymorphims.png)
+![Polymorphism](https://raw.githubusercontent.com/ParitKansal/photos/main/polymorphism.png)
 
 **Overloading vs Overriding**
 

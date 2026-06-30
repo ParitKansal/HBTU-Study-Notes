@@ -34,6 +34,21 @@
 6. **Concurrent Access**: Problems with multiple users accessing data.
 7. **Security Problems**: Vulnerabilities in data security.
 
+### **File System vs DBMS**
+
+<img src="https://github.com/ParitKansal/Database/blob/main/src/data_info_database_dbms.png" alt="File System vs DBMS" width="400">
+
+- A file system can be used to manage and access a database, but fails to do so efficiently when the database is too large.
+- Database files are stored in non-volatile (secondary) memory.
+- The unit of transfer between secondary memory and main memory is one **disk block**.
+- **IO Cost**: The number of disk blocks that must be transferred from secondary memory to main memory to access a record.
+
+| Basis for Comparison | File System | DBMS |
+| :--- | :--- | :--- |
+| **Data Access** | Requires knowledge of physical file details to access records programmatically. | Hides physical details through data abstraction and data independence (3-tier architecture). |
+| **I/O Cost** | Higher I/O cost to access data. | Lower I/O cost due to optimization techniques like indexing. |
+| **Concurrency** | Low concurrency — locking happens at the entire file level. | High concurrency — locking can be managed at the individual record level. |
+
 ---
 
 ## **Database Users**
@@ -125,11 +140,11 @@
 
 ## **Keys**
 
-- **Super Key**: All possible keys of a relation.
-- **Candidate Key**: A key whose proper subset is not a key.
-- **Primary Key**: Chosen candidate key for implementation.
-- **Alternate Key**: Candidate keys not chosen as the primary key.
-- **Foreign Key**: References a primary key in another table, ensuring referential integrity.
+- **Super Key**: Any set of attributes that uniquely identifies a tuple.
+- **Candidate Key**: A minimal super key — no proper subset of it is also a super key.
+- **Primary Key**: The candidate key chosen to uniquely identify tuples in the table.
+- **Alternate Key**: Candidate keys not selected as the primary key.
+- **Foreign Key**: An attribute that references the primary key of another table, enforcing referential integrity.
 
 ---
 
@@ -164,7 +179,7 @@
 
 | **Strong Relationship** | **Weak Relationship** |
 |-------------------------|------------------------|
-| ![Strong](https://i.ibb.co/znXBwtH/weak-relation-1.png)    | ![Weak](https://i.ibb.co/pf1Wsn4/strong-relation-1.png)                |
+| ![Strong](https://i.ibb.co/pf1Wsn4/strong-relation-1.png) | ![Weak](https://i.ibb.co/znXBwtH/weak-relation-1.png) |
 
 ---
 
@@ -225,8 +240,6 @@
 
 ---
 
----
-
 ## **Integrity Constraints**
 
 - **Domain Constraints**: Define the permissible values for an attribute.
@@ -258,6 +271,12 @@
 
 **Definition:**  
 For a relation $R$ and attributes $A$ and $B$ in $R$, $B$ is functionally dependent on $A$ (denoted $A \rightarrow B$) if each value of $A$ is associated with exactly one value in $B$ in $R$.
+
+In $X \rightarrow Y$, $X$ is called the **determinant** and $Y$ is called the **dependent**. If we know $X$, we can determine $Y$. The converse need not be true.
+
+**Formal definition:** $X \rightarrow Y$ holds in relation $R$ if and only if for every pair of tuples $t_1, t_2 \in R$: if $t_1.X = t_2.X$ then $t_1.Y = t_2.Y$.
+
+> **Note:** If the necessary condition for $X \rightarrow Y$ does not hold in a given instance, the FD can **never** exist. Even if it does hold in an instance, we cannot be certain the FD truly exists — a relation instance may change over time. FDs that hold in a relation are always identified by the database designer based on the semantics of the attributes.
 
 **Examples:**
 
@@ -330,7 +349,7 @@ Given relation $R(A, B, C, D)$ with functional dependencies: { $A \rightarrow B$
 
 ### 4. Trivial Functional Dependency
 
-- A functional dependency $A \rightarrow A$ is always satisfied (trivial).
+- A functional dependency $A \rightarrow B$ is **trivial** if $B \subseteq A$ (e.g., $\{A, B\} \rightarrow A$). Trivial FDs always hold.
 
 ### 5. Armstrong’s Axioms
 
@@ -352,43 +371,23 @@ Given relation $R(A, B, C, D)$ with functional dependencies: { $A \rightarrow B$
 ## **Normalization**
 
 **Definition:**  
-Normalization is the process of minimizing redundancy and avoiding anomalies in a relational database by organizing data into well-structured relations.
+Normalization is the process of minimizing redundancy and avoiding anomalies in a relational database by organizing data into well-structured relations. Each relation should represent a single theme or entity.
 
-**Purpose:**  
-To eliminate redundancy and avoid insertion, deletion, and update anomalies.
-
-**Process:**  
-It involves organizing attributes into relations to ensure minimal redundancy.
-
-**Focus:**  
-Ensures that each relation represents a single theme or entity.
-
-**Essence of Normalization:**  
-One relation should represent one theme or entity.
+**Anomalies eliminated:** insertion, deletion, and update anomalies.
 
 ---
 
 ### Normalization Forms
 
-
-| **Transformation Process** |
-|-|
-|**Unnormalized Relation**|
-| Removing repeating groups and ensuring that each column contains atomic (indivisible) values. |
-| **First Normal Form (1NF)** |
-| Removing partial dependency.
-Partial dependency occurs when a non-key (also known as non-prime) attribute is functionally dependent on only a part of any Composite key (also known as combination of prime attributes), rather than on the entire key.|
-| **Second Normal Form (2NF)** |
-|Removing transitive dependency.
-Make sure that no non-prime attribute is transitively dependent on the key.|
-| **Third Normal Form (3NF)** |
-| Removing overlapping candidate keys.
-For every functional dependency A -> B, A should be a key in the relation.|
-| **Boyce-Codd Normal Form (BCNF)** |
-| Removing multi-valued dependency, where a relation should not have multiple independent multi-valued facts about an entity. |
-| **Fourth Normal Form (4NF)** |
-| Removing non-implied dependency, ensuring that every join dependency in the relation is implied by the candidate keys.|
-| **Fifth Normal Form (5NF)** |
+| **Normal Form** | **Eliminates** | **Condition** |
+|---|---|---|
+| **Unnormalized (UNF)** | — | Relations may have repeating groups or non-atomic values |
+| **1NF** | Repeating groups | Every column must contain atomic (indivisible) values |
+| **2NF** | Partial dependency | No non-prime attribute depends on only part of a composite key |
+| **3NF** | Transitive dependency | No non-prime attribute transitively depends on the primary key |
+| **BCNF** | Overlapping candidate keys | For every FD $A \rightarrow B$, $A$ must be a superkey |
+| **4NF** | Multi-valued dependency | No independent multi-valued facts about an entity in one relation |
+| **5NF** | Join dependency | Every join dependency is implied by the candidate keys |
 
 ---
 
@@ -415,14 +414,13 @@ Where:
 - F<sup>+</sup> is the closure of the original functional dependencies F.
 
 ---
----
 
 ## **Relational Algebra**
 
 ### **1. Basic Operators**
 
 - **Comparison Operators**: `=`, `≥`, `≤`, `<`, `>`, `≠`
-- **Logical Operators**: `∩` (AND), `∪` (OR)
+- **Logical Operators**: `∧` (AND), `∨` (OR), `¬` (NOT)
 
 ### **2. Select (σ)**
 
@@ -472,8 +470,6 @@ Where:
 - **Description**: Retrieves rows from R<sub>1</sub> where the value of each attribute in R<sub>2</sub> is associated with all values of other attributes.
 
 **Example**:
-
-Here's the updated table with the data and result for the division operation in relational algebra:
 
 <table border="1">
    <thead>
@@ -544,6 +540,6 @@ Here's the updated table with the data and result for the division operation in 
    </tbody>
 </table>
 
-**Explanation:** If any value of attribute C is associated with all values of (A, B) in R<sub>2</sub>, it will be selected.
+**Explanation:** A value of C is included in the result only if it appears paired with **every** (A, B) combination present in R<sub>2</sub>. Here, C2 pairs with both (A1, B2) and (A4, B5), so it is selected. C1 and C4 are not, because they each appear with only one of the two pairs.
 
 ---
