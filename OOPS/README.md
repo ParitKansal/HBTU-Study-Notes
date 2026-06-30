@@ -1,246 +1,501 @@
-# **OOPS**
-______
-**What is Object Oriented Programming (OOPs)?**
+# Object-Oriented Programming (OOP)
 
-O*bject* O*riented* P*rogramming* (also known as OOPs) is a programming paradigm where the complete software is formed by objects which talk with each other.
+## Table of Contents
+- [Core Concepts](#core-concepts)
+- [Four Pillars of OOP](#four-pillars-of-oop)
+- [Inheritance](#inheritance)
+- [Interfaces and Abstract Classes](#interfaces-and-abstract-classes)
+- [Constructors and Destructors](#constructors-and-destructors)
+- [Virtual Functions](#virtual-functions)
+- [Static Members](#static-members)
+- [Class vs Struct (C++)](#class-vs-struct-c)
+- [OOP vs Structured Programming](#oop-vs-structured-programming)
+- [Programming Paradigms](#programming-paradigms)
+- [Code Examples](#code-examples)
+
+---
+
+## Core Concepts
+
+**What is OOP?**
+Object Oriented Programming is a programming paradigm where software is built from objects that communicate with each other.
 
 **What is a Class?**
-
-A **class** is a building block of Object-Oriented Programs. It is a user-defined data type that contains the data members and member functions that operate on the data members. It is like a blueprint or template of objects having common properties and methods.
+A **class** is a user-defined data type that acts as a blueprint — it defines data members and member functions that operate on that data.
 
 **What is an Object?**
+An **object** is an instance of a class. It holds its own data and can use the methods defined in the class. Objects are the real-world entities that have a state and behavior.
 
-An **object** is an instance of a class. An object is a collection of data and the methods which operate on that data. Data members and methods of a class cannot be used directly. We need to create an object (or instance) of the class to use them. In simple terms, they are the actual world entities that have a state and behavior.
-
-**What are the main features of OOPs?**
-
-1. Encapsulation  
-2. Data Abstraction  
-3. Polymorphism  
-4. Inheritance
-
-**What is Encapsulation?**
-
-Encapsulation is the binding of data and methods that manipulate them into a single unit such that the sensitive data is hidden from the users.
-
-**What is Abstraction?**
-
-Abstraction means showing only the necessary information and hiding the other irrelevant information from the user. Abstraction is implemented using classes and interfaces.
-
-**What is Polymorphism?**
-
-Polymorphism means some code to behave differently for different contexts.
-
-**A) Compile-Time Polymorphism / Static polymorphism / Early binding**
-
-The type of polymorphism where the binding of the call to its code is done at the compile time.
-
-**B) Runtime Polymorphism** **/ Dynamic polymorphism / Late binding**
-
-The type of polymorphism where the binding of the call to its code is done at the compile time runtime or execution.
-
-![](https://github.com/ParitKansal/photos/blob/main/polymorphims.png)
-
-**What is Inheritance? What is its purpose?**
-
-The idea of inheritance is simple, a class is derived from another class and uses data and implementation of that other class.
-
-**What are access specifiers? What is their significance in OOPs?**
-
-Access specifiers are special types of keywords that are used to specify or control the accessibility of entities like classes, methods, and so on. **Private**, **Public**, and **Protected** are examples of access specifiers or access modifiers.
-
-**Advantages of OOP**
-
-1. OOP provides enhanced code reusability.  
-2. The code is easier to maintain and update.  
-3. It provides better data security.
-
-**Disadvantages of OOP**
-
-1. Proper planning is required because OOP can be a bit tricky.  
-2. The OOP concept is not suitable for all kinds of problems.  
-3. The length of the programs is much larger in comparison to the procedural approach, especially in cases of short programs.
-
-**What other paradigms of programming exist besides OOPs?**
-
-**1\. Imperative Programming Paradigm**
-
-Imperative programming is about how to do things. It focuses on changing the program's state through specific instructions, telling the computer exactly what steps to follow to achieve a goal.
-
-**Key Features:**
-
-* **State Changes:** Programs are composed of a series of statements that change the program's state.  
-* **Control Flow:** It involves sequences of commands (like loops and conditionals) to control the flow of execution.  
-  **1.1**  **Procedural Programming**: Procedural programming is based on the concept of procedures (or functions). It structures the program as a series of steps or procedures to follow. **Examples**: C, Pascal, Fortran, BASIC
-
-**1.2 Object-Oriented Programming (OOP):** OOP treats everything as an object that has properties (state) and methods (behavior). It organizes the program around these objects. **Examples: Java, C++, Python, Ruby**
-
-**1.3 Parallel Programming:** Parallel programming involves breaking down tasks into smaller parts that can be executed simultaneously, improving efficiency and performance. **Examples: C (with OpenMP or MPI), Java (with concurrency libraries), Go, Erlang**
-
-**2\. Declarative Programming Paradigm**
-
-Declarative programming focuses on what to do rather than how to do it. You specify the desired outcome without explicitly detailing the steps to achieve it.
-
-**Key Features:**
-
-* **Logic Over Control Flow:** It expresses the logic of a computation without considering the control flow.  
-* **Higher-Level Abstraction:** It allows for a higher level of abstraction than imperative programming.
-
-**2.1 Logical Programming:** Logical programming is based on formal logic. You define facts and rules that express the relationships between data. **Examples**: Prolog, Mercury
-
-**2.2 Functional Programming:** Functional programming creates programs by applying and composing functions. It emphasizes the use of pure functions without side effects. **Examples: Haskell, Lisp, Scala, F\#**
-
-**2.3 Database Programming:** Database programming involves managing and manipulating data stored in databases. It utilizes specific programming models to interact with structured data. **Examples**: SQL, PL/SQL, T-SQL
-
-**What is the difference between Structured Programming and Object Oriented Programming?**
-
-| Object-Oriented Programming (OOP) | Structured Programming |
-| :---- | :---- |
-| OOP is based on objects that have state (attributes) and behavior (methods). | Structured programming focuses on the logical structure of a program, dividing it into functions and modules. |
-| It follows a **bottom-up** approach, starting with defining objects and their interactions. | It follows a **top-down** approach, starting with a high-level overview and breaking it down into smaller parts. |
-| Data flow is restricted to authorized parts of the program, enhancing data security. | There are no restrictions on data flow; any part of the program can access data freely. |
-| Code reusability is achieved through inheritance and polymorphism, allowing the creation of new classes from existing ones. | Code reusability is achieved using functions and loops, but it's limited compared to OOP. |
-| Methods can be dynamically called based on object behavior and runtime needs. | Functions are called sequentially, processing code step by step. |
-| Modifying and updating code is generally easier due to encapsulation and abstraction. | Modifying code can be more challenging since changes may affect multiple parts of the program. |
-| Emphasizes data as a core component, encapsulating it within objects. | Emphasizes the code logic and flow, often prioritizing procedures over data. |
-
- 
-
-**What is the difference between overloading and overriding?**
-
-**Overloading:** Same method name, different parameter lists, occurs within the same class, resolved at compile time.
-
-**Overriding:** Same method name and parameters, occurs between superclass and subclass, resolved at runtime.
-
-**Operator Overloading:** Refers to giving additional meanings to standard operators when applied to user-defined types.
-
-**Are there any limitations on Inheritance?**
-
-* As it must pass through several classes to be implemented, inheritance takes longer to process.  
-* If changes need to be made, they may need to be made in both base class and child class at the same time.  
-* If inheritance is not implemented correctly, this could result in unforeseen mistakes or inaccurate outputs.
-
-**What different types of Inheritance are there?**
-
-| Inheritance Type | Java | Python | C++ |
-| :---- | :---- | :---- | :---- |
-| **Single Inheritance** | Yes | Yes | Yes |
-| **Multilevel Inheritance** | Yes | Yes | Yes |
-| **Hierarchical Inheritance** | Yes | Yes | Yes |
-| **Multiple Inheritance** | Via interfaces | Yes | Yes |
-| **Hybrid Inheritance** | Via interfaces | Yes | Yes |
-| **Virtual Inheritance** | N/A | N/A | Yes (with virtual) |
-
-**C++:** Error may occur when it inherits many different functions of same declaration from different classes.
-
-**Python**: Supports multiple inheritance directly for classes, and method resolution is handled using the C3 linearization (MRO \- Method Resolution Order) which work like BFS. This resolving errors.
-
-Link: [https://github.com/ParitKansal/OOPS/blob/main/Inheritance.md](https://github.com/ParitKansal/OOPS/blob/main/Inheritance.md)
-
-**What is an interface?**
-
-A unique class type known as an interface contains methods but not their definitions. Inside an interface, only method declaration is permitted. You cannot make objects using an interface.
-
-Link \- [https://github.com/ParitKansal/OOPS/blob/main/interface.md](https://github.com/ParitKansal/OOPS/blob/main/interface.md)
-
-**How is an abstract class different from an interface?**
-
-| Abstract Class | Interface |
-| :---- | :---- |
-| Can have both abstract (pure virtual) and non-abstract (concrete) methods. | Can only have abstract (pure virtual) methods. |
-| Can have final (constant), non-final, static, and non-static member variables. | Can only have static and final (constants) variables. |
-| Does not support multiple inheritance in the same way as interfaces (C++ allows multiple inheritance, but with some complexities). | Supports multiple inheritance, allowing a class to implement multiple interfaces. |
-
- 
+**What are access specifiers?**
+Keywords that control the accessibility of class members. The three main specifiers are:
+- `private` — accessible only within the class
+- `protected` — accessible within the class and its subclasses
+- `public` — accessible from anywhere
 
 **How much memory does a class occupy?**
+A class definition itself occupies minimal memory. Instance variables get memory only when an object is created — each object has its own copy. Methods are shared across all instances.
 
-A class itself occupies memory for its definition and any class-level attributes, but it doesn't allocate memory for instance variables until an object is created. Each instance of a class has its own memory for instance variables, while methods are shared among instances.
+**Is it always necessary to create objects from a class?**
+No. `static` methods and variables can be accessed directly via the class name without creating an object. Non-static members require an object.
 
-**Is it always necessary to create objects from class?**
+---
 
-**Creating Objects:** You must create objects to access non-static methods and variables.
+## Four Pillars of OOP
 
-**No Objects Needed:** You do not need to create objects to access static methods or variables; you can call them directly using the class name.
+### Encapsulation
+Binding data and the methods that manipulate it into a single unit, hiding sensitive data from the outside world.
 
-**What is the difference between a structure and a class in C++?**
+### Abstraction
+Showing only the necessary details and hiding irrelevant implementation from the user. Implemented using classes and interfaces.
 
-| Feature | Class | Struct |
-| :---- | :---- | :---- |
-| **Default Access Specifier** | Private | Public |
-| **Inheritance** | Default is private | Default is public |
-| **Member Functions** | Can have member functions and can be abstract. | Can have member functions and can be abstract, but usually does not. |
-| **Constructor/Destructor** | Can define constructors and destructors. | Can define constructors and destructors. |
-| **Polymorphism / Virtual Function** | Supports polymorphism with virtual functions. | Supports polymorphism with virtual functions. |
+### Polymorphism
+The ability of code to behave differently for different contexts.
 
- 
+| Type | Also Called | When Resolved |
+| :--- | :--- | :--- |
+| Compile-time polymorphism | Static / Early binding | At compile time |
+| Runtime polymorphism | Dynamic / Late binding | At runtime |
 
-**What is Constructor?**
+**Compile-time:** Achieved through method overloading and operator overloading.  
+**Runtime:** Achieved through method overriding with virtual functions.
 
-A constructor is a block of code that initializes the newly created object. A constructor resembles an instance method but it’s not a method as it doesn’t have a return type. It generally is the method having the same name as the class but in some languages, it might differ like in python, a constructor is named **\_\_init\_\_.** 
+![Polymorphism](https://github.com/ParitKansal/photos/blob/main/polymorphims.png)
 
-**What are the various types of constructors in C++?**
+**Overloading vs Overriding**
 
-The most common classification of constructors includes:
+| | Overloading | Overriding |
+| :--- | :--- | :--- |
+| Method name | Same | Same |
+| Parameters | Different | Same |
+| Scope | Same class | Superclass and subclass |
+| Resolved at | Compile time | Runtime |
 
-1. **Default Constructor**  
-2. **Non-Parameterized Constructor**  
-3. **Parameterized Constructor**  
-4. **Copy Constructor**
+**Operator Overloading:** Giving additional meanings to standard operators when applied to user-defined types.
 
-**1\. Default Constructor**
+### Inheritance
+A class (child) is derived from another class (parent) and reuses its data and implementation.
 
-The default constructor is a constructor that doesn’t take any arguments. It is a non-parameterized constructor that is automatically defined by the compiler when no explicit constructor definition is provided.
+**Advantages of OOP**
+1. Enhanced code reusability
+2. Easier to maintain and update
+3. Better data security through encapsulation
 
-**2\. Non-Parameterized Constructor**
+**Disadvantages of OOP**
+1. Requires proper planning; can be tricky to design well
+2. Not suitable for all types of problems
+3. Programs are often longer than procedural equivalents for simple tasks
 
-It is a user-defined constructor having no arguments or parameters.
+---
 
-**3\. Parameterized Constructor**
+## Inheritance
 
-The constructors that take some arguments are known as parameterized constructors.
+**Limitations of Inheritance**
+- Takes longer to process as it must pass through several classes
+- Changes may need to be made in both base and child class simultaneously
+- Incorrect implementation can lead to bugs and unexpected output
 
-**4\. Copy Constructor**
+**Types of Inheritance**
 
-A copy constructor is a member function that initializes an object using another object of the same class.
+| Inheritance Type | Java | Python | C++ |
+| :--- | :--- | :--- | :--- |
+| Single | Yes | Yes | Yes |
+| Multilevel | Yes | Yes | Yes |
+| Hierarchical | Yes | Yes | Yes |
+| Multiple | Via interfaces only | Yes | Yes |
+| Hybrid | Via interfaces only | Yes | Yes |
+| Virtual | N/A | N/A | Yes (`virtual` keyword) |
 
-**Example:**
+**C++:** Ambiguity errors occur when multiple base classes define a function with the same name (see [Multiple Inheritance Problem](#problem-in-multiple-inheritance)).
 
-```C++  
-class base {  
-    int a, b;  
-    base(base& obj)  
-    {  
-        a = obj.a;  
-        b = obj.b;  
-    }  
+**Python:** Supports multiple inheritance directly. Ambiguity is resolved using **C3 linearization (MRO — Method Resolution Order)**, which works similarly to BFS.
+
+---
+
+## Interfaces and Abstract Classes
+
+**What is an Interface?**
+An interface defines method signatures without implementations. It is a contract that implementing classes must fulfill. You cannot instantiate an interface directly.
+
+**Abstract Class vs Interface**
+
+| Feature | Abstract Class | Interface |
+| :--- | :--- | :--- |
+| Methods | Can have both abstract and concrete methods | Only abstract (pure virtual) methods |
+| Variables | Can have any kind of member variables | Only `static` and `final` (constants) |
+| Multiple inheritance | Limited (complex in C++) | Supported — a class can implement many |
+
+---
+
+## Constructors and Destructors
+
+**What is a Constructor?**
+A constructor is a special block of code that runs when an object is created. It has the same name as the class and has no return type.
+
+**Types of Constructors (C++)**
+
+| Type | Description |
+| :--- | :--- |
+| Default | No arguments; auto-generated by compiler if none is defined |
+| Non-parameterized | User-defined, no arguments |
+| Parameterized | Takes arguments to initialize with specific values |
+| Copy | Initializes a new object as a copy of an existing one |
+
+**Copy Constructor Example (C++)**
+```cpp
+class Base {
+    int a, b;
+    Base(Base& obj) {
+        a = obj.a;
+        b = obj.b;
+    }
+};
+```
+
+**Can constructors be overloaded?** Yes — define multiple constructors with different parameter lists.
+
+**What is a Destructor?**
+A destructor is called automatically when an object goes out of scope or is deleted.
+
+| Language | Destructor |
+| :--- | :--- |
+| C++ | `~ClassName()` |
+| Python | `__del__` |
+| Java | No destructor; GC handles cleanup (`finalize()` was deprecated in Java 9) |
+
+**Can destructors be overloaded?** No — a class can have only one destructor.
+
+---
+
+## Virtual Functions
+
+**Virtual Function vs Pure Virtual Function**
+
+| Feature | Virtual Function | Pure Virtual Function |
+| :--- | :--- | :--- |
+| Purpose | Override parent method; provides default behavior | Forces derived class to provide an implementation |
+| Declaration | `virtual void func() {}` | `virtual void func() = 0;` |
+| Base class implementation | Allowed | Not allowed |
+| Can instantiate base class | Yes | No (class becomes abstract) |
+
+---
+
+## Static Members
+
+Static members belong to the class, not to any individual object. They are shared across all instances.
+
+```cpp
+#include <iostream>
+
+class MyClass {
+public:
+    static int classVar;
+
+    MyClass() {
+        classVar++;
+    }
+
+    static void displayClassVar() {
+        std::cout << "Class Variable: " << classVar << std::endl;
+    }
+};
+
+int MyClass::classVar = 0;
+
+int main() {
+    MyClass obj1;
+    MyClass obj2;
+    MyClass::displayClassVar(); // Output: Class Variable: 2
+    return 0;
 }
 ```
 
-**What is a destructor?**
+---
 
-A destructor is a method that is automatically called when the object is made of scope or destroyed.
+## Class vs Struct (C++)
 
-In C++, the destructor name is also the same as the class name but with the (**\~**) **tilde symbol** as the prefix.
+| Feature | Class | Struct |
+| :--- | :--- | :--- |
+| Default access specifier | `private` | `public` |
+| Default inheritance | `private` | `public` |
+| Common usage | Full OOP with encapsulation | Plain data grouping |
+| Constructors/Destructors | Yes | Yes |
+| Virtual functions | Yes | Yes |
 
-In Python, the destructor is named **\_\_del\_\_**.
+---
 
-In Java, the garbage collector automatically deletes the useless objects so there is no concept of destructor in Java. We could have used finalize() method as a workaround for the java destructor but it is also deprecated since Java 9\.
+## OOP vs Structured Programming
 
-**Can we overload the constructor in a class?**
+| OOP | Structured Programming |
+| :--- | :--- |
+| Bottom-up design — build objects, then compose them | Top-down design — break problem into steps |
+| Data encapsulated inside objects | Data flows freely across the program |
+| Reuse via inheritance and polymorphism | Reuse via functions and loops |
+| Methods dispatched dynamically at runtime | Functions called sequentially |
+| Easier to extend and modify | Changes can ripple across many procedures |
 
-Yes, constructor overloading is done when we want to define multiple constructors with different parameters (number and type).
+---
 
-**Can we overload the destructor in a class?**
+## Programming Paradigms
 
-No, a destructor cannot be overloaded in a class. There can only be one destructor present in a class.
+### 1. Imperative Programming
+Focuses on **how** to do things — a sequence of statements that change program state.
 
-**Difference b/w Virtual Functions and Pure Virtual Functions**
+- **1.1 Procedural** — structured as a series of procedures/functions. Examples: C, Pascal, Fortran
+- **1.2 Object-Oriented** — structured around objects with state and behavior. Examples: Java, C++, Python
+- **1.3 Parallel** — tasks split to run simultaneously. Examples: C (OpenMP/MPI), Go, Erlang
 
-| Feature | Virtual Functions | Pure Virtual Functions |
-| :---- | :---- | :---- |
-| **Definition** | A virtual function is a function that is used to override a method of the parent class in the derived class. | A pure virtual function, also known as an abstract function is a member function that doesn’t contain any statements.  |
-| **Declaration** | Declared with the virtual keyword. | Declared with \= 0 to signify it is a pure virtual function. |
-| **Implementation** | Can have an implementation in the base class, providing default behavior. | Must not have an implementation in the base class, enforcing derived classes to provide one. |
-| **Instantiation** | Can instantiate the base class, allowing creation of base class objects. | Cannot instantiate the base class (it becomes abstract), ensuring that only derived classes can be instantiated. |
-| **Example** | virtual double function () {return 0;} | virtual double function () const \= 0; |
+### 2. Declarative Programming
+Focuses on **what** to do — describes the desired outcome without specifying control flow.
+
+- **2.1 Logical** — based on formal logic and facts/rules. Examples: Prolog, Mercury
+- **2.2 Functional** — programs built by composing pure functions. Examples: Haskell, Lisp, Scala
+- **2.3 Database** — manipulating structured data. Examples: SQL, PL/SQL
+
+---
+
+## Code Examples
+
+### Abstract Class with Non-final Member Variable
+
+Demonstrates the four ways to access and modify a protected member variable in an abstract class hierarchy.
+
+```cpp
+#include <iostream>
+
+class AbstractClass {
+protected:
+    double a;
+
+public:
+    AbstractClass(double w) : a(w) {}
+
+    virtual double fun1() const = 0;
+    virtual double fun2() = 0;
+
+    void seta(double w) { a = w; }
+    double geta() const { return a; }
+
+    virtual ~AbstractClass() {}
+};
+
+class ClassA : public AbstractClass {
+public:
+    ClassA(double r) : AbstractClass(r) {}
+
+    // const function: cannot modify a, can only call other const functions
+    double fun1() const override {
+        return geta();
+    }
+
+    // non-const function: can modify a directly
+    double fun2() override {
+        a = 6;
+        return geta();
+    }
+
+    double fun3() {
+        a = 7;
+        return a;
+    }
+};
+
+int main() {
+    AbstractClass* obj1 = new ClassA(5.0);
+    std::cout << obj1->fun1() << " " << obj1->fun2() << std::endl; // 5 6
+
+    ClassA* obj2 = new ClassA(5.0);
+    std::cout << obj2->fun1() << " " << obj2->fun2() << " " << obj2->fun3() << std::endl; // 5 6 7
+
+    delete obj1;
+    delete obj2;
+    return 0;
+}
+```
+
+---
+
+### Interface Example (IShape)
+
+Demonstrates how a C++ interface (pure virtual class) enforces a contract on derived classes.
+
+```cpp
+#include <iostream>
+#include <cmath>
+
+class IShape {
+public:
+    virtual double area() const = 0;
+    virtual double perimeter() const = 0;
+    virtual ~IShape() {}
+};
+
+class Circle : public IShape {
+    double radius;
+public:
+    Circle(double r) : radius(r) {}
+    double area() const override { return M_PI * radius * radius; }
+    double perimeter() const override { return 2 * M_PI * radius; }
+};
+
+class Rectangle : public IShape {
+    double width, height;
+public:
+    Rectangle(double w, double h) : width(w), height(h) {}
+    double area() const override { return width * height; }
+    double perimeter() const override { return 2 * (width + height); }
+};
+
+int main() {
+    IShape* circle = new Circle(5.0);
+    IShape* rectangle = new Rectangle(4.0, 6.0);
+
+    std::cout << "Circle Area: " << circle->area() << std::endl;
+    std::cout << "Circle Perimeter: " << circle->perimeter() << std::endl;
+    std::cout << "Rectangle Area: " << rectangle->area() << std::endl;
+    std::cout << "Rectangle Perimeter: " << rectangle->perimeter() << std::endl;
+
+    delete circle;
+    delete rectangle;
+    return 0;
+}
+```
+
+---
+
+### Problem in Multiple Inheritance
+
+When two base classes define a method with the same name, calling it from the derived class is ambiguous.
+
+```cpp
+#include <iostream>
+
+class A {
+public:
+    void fun() { std::cout << "Class A" << std::endl; }
+};
+
+class B {
+public:
+    void fun() { std::cout << "Class B" << std::endl; }
+};
+
+class C : public A, public B {};
+
+int main() {
+    C obj;
+    obj.fun(); // ERROR: ambiguous
+    return 0;
+}
+```
+
+**Error:**
+```
+error: request for member 'fun' is ambiguous
+```
+
+**Solution 1 — Explicit scope resolution:**
+```cpp
+class C : public A, public B {
+public:
+    void callAFun() { A::fun(); }
+    void callBFun() { B::fun(); }
+};
+```
+
+**Solution 2 — Override and delegate:**
+```cpp
+class C : public A, public B {
+public:
+    void fun() { A::fun(); }
+};
+```
+
+---
+
+### Diamond Problem in Hybrid Inheritance
+
+When D inherits from both B and C, and both inherit from A, there are two copies of A inside D — causing ambiguity.
+
+```cpp
+#include <iostream>
+
+class A {
+public:
+    void displayA() { std::cout << "Class A" << std::endl; }
+};
+
+class B : public A {
+public:
+    void displayB() { std::cout << "Class B" << std::endl; }
+};
+
+class C : public A {
+public:
+    void displayC() { std::cout << "Class C" << std::endl; }
+};
+
+class D : public B, public C {
+public:
+    void displayD() { std::cout << "Class D" << std::endl; }
+};
+
+int main() {
+    D obj;
+    obj.displayA(); // ERROR: ambiguous — two copies of A exist in D
+    return 0;
+}
+```
+
+**Solution — Virtual Inheritance** (ensures only one shared copy of A):
+
+```cpp
+class B : virtual public A { ... };
+class C : virtual public A { ... };
+class D : public B, public C { ... }; // Now only one A
+
+// obj.displayA(); works correctly
+```
+
+---
+
+### Method Hiding vs Runtime Polymorphism
+
+Without `virtual`, the method called depends on the **pointer type**, not the object type (method hiding). With `virtual`, it depends on the **actual object** (runtime polymorphism).
+
+```cpp
+#include <iostream>
+
+class Base {
+public:
+    void show() {  // Non-virtual: resolved at compile time by pointer type
+        std::cout << "Base class show function." << std::endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void show() {
+        std::cout << "Derived class show function." << std::endl;
+    }
+};
+
+int main() {
+    Base* ptr1 = new Derived();
+    ptr1->show();    // Calls Base::show() — method hiding, not polymorphism
+
+    Derived* ptr2 = new Derived();
+    ptr2->show();    // Calls Derived::show()
+
+    delete ptr1;
+    delete ptr2;
+    return 0;
+}
+```
+
+**Output:**
+```
+Base class show function.
+Derived class show function.
+```
+
+> To get runtime polymorphism, declare `show()` as `virtual` in `Base`.
