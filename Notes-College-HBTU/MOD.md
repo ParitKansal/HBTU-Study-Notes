@@ -1,5 +1,9 @@
 ![](https://i.ibb.co/3Ny5q3y/0402-20240820-203742-0000-pdf-17.png)
 
+# Mobile Computing (MOD)
+
+---
+
 ### **Introduction to Mobile Computing**  
 
 Mobile computing is a technology that allows devices to share data, audio, and video without being physically connected.
@@ -18,7 +22,6 @@ Mobile computing is a technology that allows devices to share data, audio, and v
 
 3. **Mobile Software**  
    - The operating systems (e.g., Android, iOS, Windows) and apps that make the devices work.  
-
 
 ### **Mobile Computing Devices**  
 
@@ -218,132 +221,6 @@ An agile methodology is an iterative approach to software development. Each iter
   - Simple **API** for easier use
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ---
 ---
 
@@ -379,56 +256,10 @@ An agile methodology is an iterative approach to software development. Each iter
 ---
 ---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### **Android component model**
 
 Defines how Android apps are built and interact with each other using specific building blocks, known as *components*, each designed to handle different functions of an app.
-Different componets :
-
+Different components:
 
 | **Component**          | **Purpose**                                           | **Example**                                                       |
 |------------------------|-------------------------------------------------------|-------------------------------------------------------------------|
@@ -436,8 +267,6 @@ Different componets :
 | **Services**            | Runs background tasks without user interface.        | A music player continuing to play music when switching to another app. |
 | **Broadcast Receivers** | Listens for system-wide messages to trigger actions.  | Reacting to a “battery low” notification by dimming the screen or saving progress. |
 | **Content Providers**   | Manages and shares structured data between apps.     | The Contacts app sharing contact data with messaging or email apps. |
-
-
 
 #### **Important Concepts in the Android Component Model**
 
@@ -489,8 +318,6 @@ Layouts define how elements are arranged on the screen. In Android, layouts are 
 4. **Table Layout**  
 5. **Constraint Layout**: A flexible layout that lets you position and scale elements based on specific rules or constraints.
 
-
-
 ---
 
 ### **Mobile Operating Systems (Mobile OS)**
@@ -500,7 +327,7 @@ A Mobile Operating System (Mobile OS) is software that manages the hardware and 
 | Feature                | **Android**                     | **iOS**                        | **BlackBerry**                  | **Windows Phone**                |
 |------------------------|---------------------------------|--------------------------------|---------------------------------|----------------------------------|
 | **App Store**          | Large, diverse app store        | Large, but limited to Apple    | Limited app store               | Limited app store                |
-| **Integration**        | Full Google integration         |                                |                                 | Windows integration              |
+| **Integration**        | Full Google integration         | Full Apple ecosystem integration |                                 | Windows integration              |
 | **Wide App Support**   | Broad app support               | Strong app support             | Fewer apps                      | Fewer apps                       |
 | **Multitasking**       | Full multitasking               | Multitasking                   | Multitasking                    | Multitasking                     |
 | **Open-source**        | Open-source                     | Closed-source                  | Closed-source                   | Closed-source                    |
@@ -541,13 +368,9 @@ A Mobile Operating System (Mobile OS) is software that manages the hardware and 
 - Improved Security and Compliance
 - Access to Advanced Services
 
-
-
-
 ---
 
 ### **Functional and Non-Functional Requirements for Mobile Apps: What’s the Difference?**
-
 
 #### **Functional Requirements**
 
@@ -558,7 +381,6 @@ Functional requirements specify what a mobile application should do. They descri
 - **Business Requirements:** These are high-level goals defined by the company. For example, "The app should allow users to browse the product catalog and make purchases."  
 - **User Requirements:** These detail what users can do with the app. For instance, "Users can sign up, view their order history, and search for products."  
 - **Functional Specifications:** These are specific actions the system must perform. For example, "The app should send an email confirmation whenever a user makes a purchase."
-
 
 **Functional Requirements for a Fishing App:**
 
@@ -584,7 +406,6 @@ Non-functional requirements describe how the app performs its functions. They de
 * **Security:** The app must protect user data and have access controls in place to prevent unauthorized use.  
 * **Usability:** The app should have an intuitive interface that is easy for users to navigate.  
 * **Extensibility:** The app should be designed to easily integrate new features in the future.
-
 
 ---
 
@@ -650,7 +471,7 @@ Non-functional requirements describe how the app performs its functions. They de
     * Use Microservices
 - **Regular Updates and Maintenance**
     * Keep Dependencies Updated
-    * Restructuring  Code
+    * Refactoring Code
 
 ### **Strategies for Enhancing Modifiability:**
 - Modular Architecture  
@@ -691,97 +512,7 @@ Non-functional requirements describe how the app performs its functions. They de
    - **Caching**: HTTP protocols can cache data, speeding up apps and reducing data usage on slow networks.
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Moblie Testing
+## Mobile Testing
 
 - **Importance of Mobile:** Mobile devices play a crucial role in daily life.
 - **User Preference:** Most users prefer accessing websites and apps on phones over computers for small tasks.
@@ -812,7 +543,6 @@ Non-functional requirements describe how the app performs its functions. They de
 | **Interrupt Testing**                  | Checks how the app behaves during interruptions like calls, notifications, or battery changes.|  
 | **Installation Testing**               | Tests if the app installs and uninstalls correctly without issues.                            |  
 
-
 | **Key Factors Influencing Mobile App Testing**| **Description**                                                                                                   |  
 |-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------|  
 | **Mobile Devices**                            | Testing the app on various devices with different resolutions, browsers, OS, and hardware is crucial.             |  
@@ -829,7 +559,6 @@ Non-functional requirements describe how the app performs its functions. They de
 7. **Complete Testing and Closure:** Final testing and regression testing before sign-off.
 
 **Final Report:** Includes bug count, types of testing, and compatibility matrix.
-
 
 ### Best Tools for Mobile Application Testing
 1. **Appium**  

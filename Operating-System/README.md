@@ -149,7 +149,7 @@ A system call is a way for programs to interact with the operating system
 - **Type** - Preemptive and Non-Preemptive
 
 ### **Round-Robin Scheduling**
-- Processes are queued in the ready queue in the order they arrive.- If multiple processes arrive simultaneously, the Process ID determines the order.
+- Processes are queued in the ready queue in the order they arrive. If multiple processes arrive simultaneously, the Process ID determines the order.
 - The process at the front of the queue is executed for a fixed time quantum (*Q*).
 - If the process isn’t completed within this time, it is re-queued at the back of the queue (after enqueuing any new arrivals).
 
@@ -160,14 +160,14 @@ A system call is a way for programs to interact with the operating system
 - **Very Small $Q$:** CPU spends more time in context switching than in actual execution, reducing CPU efficiency
 
 ### **Multilevel Queue Scheduling**
-1. **Fixed Priority preemptive Scheduling method**- 
+1. **Fixed Priority Preemptive Scheduling** - Higher priority queues always preempt lower ones
 
    ![](https://media.geeksforgeeks.org/wp-content/uploads/multilevel-queue-schedueling-1-300x217.png)
-3. **Time Slicing**- (Q1, 60%) , (Q2, 30%) , (Q3, 10%) 
+2. **Time Slicing** - Each queue gets a fixed percentage of CPU time: (Q1, 60%), (Q2, 30%), (Q3, 10%)
 
 ### **Multilevel Feedback Queue Scheduling**
 ![](https://media.geeksforgeeks.org/wp-content/uploads/Multilevel-Feedback-Queue-Scheduling-300x269.png)
-- If a process do not get completed in one Q time it is moved to lower priority queue
+- If a process does not complete within one time quantum, it is moved to a lower priority queue
 
 ---
 ---
@@ -211,7 +211,7 @@ A system call is a way for programs to interact with the operating system
 
 #### **Types of Processes**
 1. **Independent** - No communication with any other process
-2. **Cooperating/Coordinating/Communicating** - Can affect be other process or can be affected by other Can process.
+2. **Cooperating/Coordinating/Communicating** - Can affect or be affected by other processes.
 
 #### **Problems without Synchronization:**
 - Inconsistency
@@ -264,8 +264,9 @@ lock = False;
 
 </table>
 
-- **Mutual Exclusion** - No 
+- **Mutual Exclusion** - No (both processes can pass the `while(lock)` check before either sets `lock = True`)
 - **Progress** - Yes
+- **Bounded Waiting** - No
 
 ### **Using Turn**
 
@@ -297,8 +298,8 @@ turn = True;
 
 </table>
 
-- **Mutual Exclusion** - Yes 
-- **Progress** - No
+- **Mutual Exclusion** - Yes
+- **Progress** - No (if P0 finishes and P1 is not interested, P0 cannot re-enter because `turn` is set to P1)
 - **Bounded Waiting** - Yes
 
 
@@ -343,18 +344,18 @@ Flag[1] = False;
 
 ### **Synchronization Hardware**
 ### TestAndSet()
-- Return the current flag value and set it's value to True
+- Atomically returns the current flag value and sets it to `True`
 ```
 bool TestAndSet(bool* flag){
     bool temp = *flag;
-    *flag = True;
+    *flag = true;
     return temp;
 }
 ```
 
 <table>
 <tr>
-<td colspan = 2>Flag[0] = False, Flag[1] = False</td>
+<td colspan = 2>Lock = False</td>
 </tr>       
 <tr>
 <th>
@@ -367,14 +368,14 @@ P1
 <tr>
 <td>
 <pre>
-TestAndSet(&flag);
+while(TestAndSet(&Lock));
 CS;
 Lock = false;
 </pre>
 </td>
 <td>
 <pre>
-TestAndSet(&flag);
+while(TestAndSet(&Lock));
 CS;
 Lock = false;
 </pre>
@@ -382,11 +383,9 @@ Lock = false;
 </tr>
 </table>
 
-
-
-- **Mutual Exclusion** - Yes 
+- **Mutual Exclusion** - Yes
 - **Progress** - Yes
-- **Bounded Waiting** - Yes
+- **Bounded Waiting** - No (a process may spin indefinitely if others keep acquiring the lock)
 
 ### **Semaphore**
 
@@ -592,7 +591,7 @@ Reader(){
 ---
 
 # **Deadlock**
-- If two or more processes are waiting for such an event which is never going to occur
+- A situation where two or more processes are each waiting for a resource held by another waiting process, so none can ever proceed
 
 
 ### **Necessary Conditions for Deadlock**:
@@ -605,20 +604,20 @@ Deadlock can occur only when all the following conditions are satisfied simultan
 4. **Circular Wait**:  A set of processes must exist such that each process is waiting for a resource held by the next process in the chain, forming a circular chain.
 
 ### **Recovery From Deadlock**
-1. Make Sure that deadlock never occur:
-    a) Prevent the system from deadlock
-    b) avoid deadlock
-2. Allow deadlock, detect and recover
-3. Pretend that there is no any deadlock
+1. Ensure deadlock never occurs:
+    - a) Prevent the system from deadlock
+    - b) Avoid deadlock
+2. Allow deadlock, then detect and recover
+3. Ignore deadlock (Ostrich Algorithm)
 
 ### **Deadlock Prevention**
 Prevent any of four necessary conditions to occur
 - **Mutual Exclusion**
-    - Have enough resources to provide simultaneous execution: require more no of resources
-    - Make all processes independent: practically not possible 
+    - Provide enough resources for simultaneous execution (requires more resources)
+    - Make all resources shareable — practically not always possible
 - **Hold & Wait**
-    - all (process resources are available then acquire or else just wait for all. may suffer from starvation.)
-    - If process is trying to acquire a resource which is not available, while holding holding some resources; then process will release the allocated resources.
+    - Require a process to request all resources at once: acquire everything upfront or wait. May suffer from starvation.
+    - If a process tries to acquire a resource that is not available while holding other resources, it must release all held resources and retry.
 - **No Preemption**
     - Preempt one or more resources from processes
 - **Circular Wait**
@@ -665,7 +664,7 @@ Prevent any of four necessary conditions to occur
     a) Finish[i] == false
     b) Request; <= Work
     If no such i exists go to step 4.
-3.  Work Work+ Allocation
+3.  Work = Work + Allocation_i
     Finish[i]= true
     Go to Step 2.
 4.  If Finish[i]== false for some i, 0<=i<n,
@@ -746,9 +745,9 @@ The main memory is not pre-divided into fixed-sized partitions. When a process a
 
 ![](https://i.ibb.co/Kh6PYyV/PAging.png)
 
-- Bits for page no  =   log(No of Pages in Process)
-- Bits for byte no  =   log(Page Size)
-- Bits for frame no =   log(No of frames in Physical Memory)
+- Bits for page no  =   log₂(No of Pages in Process)
+- Bits for byte no  =   log₂(Page Size)
+- Bits for frame no =   log₂(No of frames in Physical Memory)
 - No of entries in the page table = No of pages in process
 - Size of Page table = No of entries in the page table * 1 entry size = No of pages in process * 1 entry size
 
@@ -805,12 +804,12 @@ A Translation Lookaside Buffer (TLB) is a hardware component used to reduce the 
 
 - Bits For Logical Address = Bits for page no + Bits for Byte no
 - Bits for page no = Bits for Tag + Bits for TLB Set Number
-- Bits for page no = log(No of Pages in Process)
-- Bits for byte no = log(Page Size)
-- Bits for TLB Set Number = log(Number of Sets in TLB)
-- Number of sets in TLB = No of Entries in TLB / K 
-- Total Tag Directory Size = Number of Entries in TLB * Tag Size = Number of Sets in TLB * k * Tag Size = log(No of Pages in Process)
-- Bits for frame no = log(No of frames in Physical Memory)
+- Bits for page no = log₂(No of Pages in Process)
+- Bits for byte no = log₂(Page Size)
+- Bits for TLB Set Number = log₂(Number of Sets in TLB)
+- Number of sets in TLB = No of Entries in TLB / K
+- Total Tag Directory Size = Number of Entries in TLB × Tag Size = Number of Sets in TLB × K × Tag Size
+- Bits for frame no = log₂(No of frames in Physical Memory)
 - No of entries in the page table = No of pages in process
 - Size of Page table = No of entries in the page table * 1 entry size = No of pages in process * 1 entry size
 
@@ -841,9 +840,9 @@ A Translation Lookaside Buffer (TLB) is a hardware component used to reduce the 
     - The CPU resumes its execution.
 
 
-- Extra bits in Entry in Page table contains-
-    - Valid bits
-    - Modified bit
+- Extra bits in each page table entry:
+    - **Valid bit** - indicates whether the page is currently in main memory
+    - **Modified (Dirty) bit** - indicates whether the page has been modified since being loaded
 
 ## Page Replacement Algorithm
 - **First In First Out**: replace that page which brought to memory first.
@@ -853,10 +852,10 @@ A Translation Lookaside Buffer (TLB) is a hardware component used to reduce the 
 - **Least Frequently Used**: replace page which has been used minimum number of times
 - **Most Frequently Used**: replace page which has been used maximum number of times
 - **Second Chance Replacement**:
-    - When we bring a new page into main memory (MM), **R = 0** (indicating the page has not been used yet).  
-    - When the page is accessed (referred), **R = 1**.  
-    - Pages are replaced using the **FIFO** algorithm, but only if **R == 0** (i.e., the page has not been recently used).  
-    - If a page is given a **second chance** or **page fault** taken place, its **R value is reset to 0**.
+    - When a page is loaded into main memory, its reference bit **R = 0**.
+    - When the page is accessed, **R = 1**.
+    - Pages are replaced using FIFO order, but a page with **R = 1** is given a second chance: **R** is reset to 0 and the page is moved to the back of the queue.
+    - A page is only replaced when **R = 0** at the time of inspection.
 
 ### **Types of Page Tables**
 - **Hierarchical**: 
