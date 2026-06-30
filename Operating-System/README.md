@@ -8,7 +8,7 @@
 - Software abstracting hardware
 - Interface between user and hardware
 - Set of utilities to simplify application development/execution
-Control program
+- Control program
 - Acts like a government
 
 ## Services of Operating Systems
@@ -43,8 +43,8 @@ A system call is a way for programs to interact with the operating system
 ## Types of Operating Systems
 - **Uni-programming OS** - One single process reside in Main memory 
 - **Multi-programming OS** - Multiple processes reside in Main memory
-  - **Non-Preemtive** - A process runs in CPU till it wants to be
-  - **Preemtive** - A process can be forcefully taken out of the CPU
+  - **Non-Preemptive** - A process runs in CPU till it wants to be
+  - **Preemptive** - A process can be forcefully taken out of the CPU
 - **Multi-tasking** - Extension of multi-programming OS in which processes execute in round-robin fashion.
 - **Multi-Processing OS** - Multiple CPUs
   - **Tightly Coupled** - each CPU has a common Main Memory
@@ -66,7 +66,7 @@ A system call is a way for programs to interact with the operating system
 - Unit of execution (CPU)
 - Locus of control (OS)
 
-### Representaion of Process
+### Representation of Process
 ![](https://i.ibb.co/B2nYVwz/Process-structure.png)
 
 
@@ -85,7 +85,7 @@ A system call is a way for programs to interact with the operating system
   - List of Files
 
 #### Context
-- The content of PCB of a process are collectively know as 'Context' of that process
+- The content of PCB of a process are collectively known as 'Context' of that process
 
 ### Context Switch
 **Context Switch** = Context save + Context Load
@@ -138,8 +138,8 @@ A system call is a way for programs to interact with the operating system
 - **TieBreaker** - FCFS
 - **Type** - Preemptive
 
-### **Highest Response Ration Next**
-- **Criteria** - Highest Response Ration = 1 + WT/BT
+### **Highest Response Ratio Next**
+- **Criteria** - Highest Response Ratio = 1 + WT/BT
 - **TieBreaker** - Burst Time
 - **Type** - Non-Preemptive
 
@@ -210,7 +210,7 @@ A system call is a way for programs to interact with the operating system
 # **Process Synchronization**
 
 #### **Types of Processes**
-1. **Independent** - None communication with any other process
+1. **Independent** - No communication with any other process
 2. **Cooperating/Coordinating/Communicating** - Can affect be other process or can be affected by other Can process.
 
 #### **Problems without Synchronization:**
@@ -229,7 +229,7 @@ A race condition is an undesirable situation, it occurs when the final result of
 
 #### **Requirements of Critical Section problem solution**:
 1. **Mutual Exclusion** - If one process use that critical section then other process can not use that critical section
-2. **Progress** - of no process is in critical section and at least 1 process wants to enter orexcess critical section then it should be allowed
+2. **Progress** - If no process is in critical section and at least 1 process wants to enter or access the critical section then it should be allowed
 3. **Bounded Waiting** - Waiting of processes should be Bounded
 
 ### **Using Lock**
@@ -320,7 +320,7 @@ turn = True;
 <pre>
 Flag[0] = True;
 turn = 1;
-while(flag[1] && turn = 1);
+while(flag[1] && turn == 1);
 CS;
 Flag[0] = False;
 </pre>
@@ -329,7 +329,7 @@ Flag[0] = False;
 <pre>
 Flag[1] = True;
 turn = 0;
-while(flag[0] && turn = 0);
+while(flag[0] && turn == 0);
 CS;
 Flag[1] = False;
 </pre>
@@ -452,7 +452,7 @@ Signal(S);
 
 **Characteristics of Semaphores**
 - Used to provide mutual exclusion → binary
-- Used to control access to resources → couting
+- Used to control access to resources → counting
 - Solution using semaphore can lead to have deadlock
 - Solution using semaphore can lead to have starvation
 - Solution using semaphore can be busy waiting solutions
@@ -524,7 +524,7 @@ Consider a situation where we have a file shared between many people:
 <pre>
 Writer(){
     Wait(wrt)
-    // Preform writting
+    // Perform writing
     Signal(wrt)
 }
 </pre>
@@ -548,7 +548,7 @@ Reader(){
 </td>
 </table>
 
-===
+---
 
 ## **Dining Philosopher**
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4rExdMYrwSEnrW_7lgJIXAMQJTVwPrBlQHQ&s)
@@ -636,10 +636,10 @@ Prevent any of four necessary conditions to occur
 
 ```
 1.  Let Work and Finish be vectors of length m and n, respectively. Initialize Work = Available and Finish[i] = false for i = 0,1,2,...,n-1.
-2.  Find an indec i such that both
+2.  Find an index i such that both
      a. Finish[i] == false
      b. Need_i <= Work
-    If ni such i exits, go to step 4.
+    If no such i exists, go to step 4.
 3.  Work += Allocation_i
     Finish[i] = true
     Go to step 2.
@@ -682,7 +682,7 @@ There are three basic approaches to recovery from deadlock:
 - Terminate one or more processes involved in the deadlock
 - Preempt resources.
 
-### Process Terminatio
+### Process Termination
 - Terminate all processes involved in the deadlock
 - Terminate processes one by one until the deadlock is broken
 
@@ -902,7 +902,7 @@ Module of OS which manages, controls and organizes files and related structures
 
 ### Free space Management
 - Free List - Linked List of free blocks
-- Bitmap Methos - make an hash array of 0/1 to store if the block is free or not
+- Bitmap Method - make a hash array of 0/1 to store if the block is free or not
 
 ## File Allocation Methods 
 - ### **Contiguous Allocation**
@@ -930,7 +930,7 @@ A master boot record (MBR) is a special type of boot sector at the very beginnin
 
 ## Disk Scheduling
 - Done by operating systems to schedule I/O requests arriving for the disk
-- using this we will try to Save seek limp
+- Goal is to minimize seek time
 
 ### Disk Scheduling Algorithms
 ![](https://i.ibb.co/D8LWrWk/example.png)
