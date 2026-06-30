@@ -74,16 +74,20 @@
   - **Save Changes:** Ctrl + O, then press Enter
   - **Exit:** Ctrl + X
 
-- **Edit with Vi Editor:**
+- **Edit with Vi/Vim Editor:**
   ```bash
   vi <file_name>
   ```
   Opens the file in the Vi text editor.
 
-  - **Enter Insert Mode:** i
-  - **Save Changes:** :w
-  - **Quit:** :q
-  - **Quit Without Saving:** :q!
+  | Action | Key |
+  |--------|-----|
+  | Enter Insert Mode | `i` |
+  | Return to Normal Mode | `Esc` |
+  | Save Changes | `:w` |
+  | Quit | `:q` |
+  | Save and Quit | `:wq` |
+  | Quit Without Saving | `:q!` |
 
 ## Basic Commands to Remove Files
 - **Delete Empty Folder:**
@@ -259,11 +263,23 @@
   ```
   Searches for an exact word in a file, matching whole words only.
 
-- **Using Wildcards:**
+- **Search in All Files of a Type:**
   ```bash
-  grep "*.txt" <directory>
+  grep "pattern" *.txt
   ```
-  Searches within all text files in a directory.
+  Searches for a pattern across all `.txt` files in the current directory.
+
+- **Recursive Search:**
+  ```bash
+  grep -r "pattern" <directory>
+  ```
+  Searches for a pattern in all files under a directory recursively.
+
+- **Recursive Search in Specific File Types:**
+  ```bash
+  grep -r "pattern" --include="*.txt" <directory>
+  ```
+  Searches recursively but only within files matching the given extension.
 
 ## Using the `find` Command
 - **Find Files or Directories by Name:**
@@ -290,6 +306,38 @@
   ```
   Searches in the current directory.
 
+## Pipe `|`
+- **Chain Commands:**
+  ```bash
+  <command1> | <command2>
+  ```
+  Passes the output of `command1` as input to `command2`.
+
+- **Examples:**
+  ```bash
+  ls -l | grep ".txt"       # list only .txt files
+  cat file.txt | sort       # display file content sorted
+  ps -ef | grep "java"      # find java processes
+  cat file.txt | wc -l      # count lines in a file
+  ```
+
+## `wc` Command
+- **Count Lines, Words, and Characters:**
+  ```bash
+  wc <file_name>
+  ```
+  Outputs line count, word count, and byte count.
+
+- **Count Lines Only:**
+  ```bash
+  wc -l <file_name>
+  ```
+
+- **Count Words Only:**
+  ```bash
+  wc -w <file_name>
+  ```
+
 ## `sort` Command
 - **Sort Lines in a File:**
   ```bash
@@ -302,6 +350,46 @@
   sort -r <file_name>
   ```
   Sorts the lines in the specified file in descending order.
+
+## File Permissions
+
+- **Change Permissions:**
+  ```bash
+  chmod <permissions> <file_name>
+  ```
+  Changes the read/write/execute permissions of a file.
+
+  | Mode | Meaning |
+  |------|---------|
+  | `chmod 777 file` | rwx for owner, group, and others |
+  | `chmod 755 file` | rwx for owner; r-x for group and others |
+  | `chmod 644 file` | rw- for owner; r-- for group and others |
+  | `chmod +x file`  | Add execute permission |
+  | `chmod -w file`  | Remove write permission |
+
+- **Change Ownership:**
+  ```bash
+  chown <user>:<group> <file_name>
+  ```
+  Changes the owner and group of a file.
+
+  ```bash
+  chown user file.txt          # change owner only
+  chown user:group file.txt    # change owner and group
+  ```
+
+## Manual / Help
+
+- **Open Manual for a Command:**
+  ```bash
+  man <command>
+  ```
+  Displays the full manual page for a command. Press `q` to quit.
+
+  ```bash
+  man ls
+  man grep
+  ```
 
 ## Process Management Commands
 - **View Processes:**
@@ -328,11 +416,29 @@
   ```
   Displays all processes with full details.
 
+- **Interactive Process Viewer:**
+  ```bash
+  top
+  ```
+  Shows a real-time, interactive view of running processes. Press `q` to quit.
+
 - **To Kill a Process:**
   ```bash
   kill <processID>
   ```
-  Terminates a process by its ID.
+  Sends SIGTERM to gracefully terminate a process.
+
+- **Force Kill a Process:**
+  ```bash
+  kill -9 <processID>
+  ```
+  Sends SIGKILL to immediately terminate a process.
+
+- **Kill by Name:**
+  ```bash
+  pkill <process_name>
+  ```
+  Terminates all processes matching the given name.
 
 ## Jenkins and AWS Configuration
 - **Download a File:**
